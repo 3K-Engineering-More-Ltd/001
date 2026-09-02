@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings · My App</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html">My App</a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="settings.html" aria-current="page">Settings</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Settings</h1>
+    <p class="page-subtitle">Manage your preferences.</p>
+
+    <div class="card">
+      <h2>Appearance</h2>
+      <div class="setting-row">
+        <div>
+          <div class="setting-label" id="dark-mode-label">Dark mode</div>
+          <p class="setting-description" id="dark-mode-description">
+            Use a dark color scheme. Defaults to your system preference.
+          </p>
+        </div>
+        <button
+          type="button"
+          id="dark-mode-toggle"
+          class="switch"
+          role="switch"
+          aria-checked="false"
+          aria-labelledby="dark-mode-label"
+          aria-describedby="dark-mode-description"
+        ></button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById("dark-mode-toggle");
+
+      function render() {
+        toggle.setAttribute(
+          "aria-checked",
+          window.appTheme.current() === "dark" ? "true" : "false"
+        );
+      }
+
+      toggle.addEventListener("click", function () {
+        window.appTheme.toggle();
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
